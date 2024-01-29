@@ -17,9 +17,11 @@ export default function Login() {
         e.preventDefault();
         signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
+
             const user = userCredential.user;
-            navigate("/")
+            localStorage.setItem('user',user.uid)
             console.log(user);
+            navigate("/")
         })
         .catch((error) => {
             const errorCode = error.code;
@@ -42,12 +44,12 @@ export default function Login() {
 
                             className="block text-sm font-semibold text-gray-800"
                         >
-                            username
+                            email
                         </label>
                         <input
                             type="text"
-                            value={data.username}
-                            onChange={(e) => setData({ ...data, username: e.target.value })}
+                            value={data.email}
+                            onChange={(e) => setData({ ...data, email: e.target.value })}
                             className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
                     </div>

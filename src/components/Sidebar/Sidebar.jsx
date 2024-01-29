@@ -4,6 +4,8 @@ import { IoMdAdd } from "react-icons/io";
 import { MdInfoOutline } from "react-icons/md";
 import TaskModel from '../TaskModel/TaskModel';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../config/firebase-config';
 const Sidebar = () => {
     const navigate = useNavigate()
     const [modelOpen, setModelOpen] = useState(false)
@@ -15,8 +17,9 @@ const Sidebar = () => {
   
     const handleLogout = () => {               
         signOut(auth).then(() => {
-            navigate("/login");
+            localStorage.clear()
             console.log("Signed out successfully")
+            navigate("/login");
         }).catch((error) => {
             console.log("error");
     
@@ -34,7 +37,6 @@ const Sidebar = () => {
             <aside id="logo-sidebar" className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
                 <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
                     <a href="https://flowbite.com/" className="flex items-center ps-2.5 mb-5">
-                        {/* <img src="https://flowbite.com/docs/images/logo.svg" className="h-6 me-3 sm:h-7" alt="Flowbite Logo" /> */}
                         <span className="self-center text-lg font-semibold whitespace-nowrap dark:text-white">Task Managment System</span>
                     </a>
                     <ul className="space-y-6 font-medium">
