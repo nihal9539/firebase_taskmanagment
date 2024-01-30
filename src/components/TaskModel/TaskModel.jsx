@@ -40,6 +40,7 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
         set(ref(db, 'task/' + user + "/" + uuid),
             {
                 uid: uuid,
+                user:user,
                 title: data.title,
                 description: data.description,
                 status: "Pending",
@@ -60,9 +61,6 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
 
 
     }
-    console.log(date);
-
-
     return (
         <div>
 
