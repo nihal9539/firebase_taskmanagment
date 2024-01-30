@@ -6,6 +6,7 @@ import TaskModel from '../TaskModel/TaskModel';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase-config';
+import { toast } from 'react-toastify';
 const Sidebar = () => {
     const navigate = useNavigate()
     const [modelOpen, setModelOpen] = useState(false)
@@ -19,7 +20,9 @@ const Sidebar = () => {
         signOut(auth).then(() => {
             localStorage.clear()
             console.log("Signed out successfully")
+            toast.success("Logout",{position:"top-right"})
             navigate("/login");
+            // window.location.reload()
         }).catch((error) => {
             console.log("error");
     
@@ -51,6 +54,12 @@ const Sidebar = () => {
                                 <MdInfoOutline size={30} />
                                 <span className="flex-1 ms-3 whitespace-nowrap">About</span>
                             </a>
+                        </li>
+                        <li>
+                            <div onClick={()=>navigate('/AA')}  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <MdInfoOutline size={30} />
+                                <span className="flex-1 ms-3 whitespace-nowrap">Profile</span>
+                            </div>
                         </li>
                         <li>
                             <div onClick={handleLogout} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">

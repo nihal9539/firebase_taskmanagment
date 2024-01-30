@@ -38,7 +38,6 @@ const Home = () => {
     console.log(taskData);
     return (
         <div className='' >
-            <Sidebar />
             <div className='p-4 sm:ml-64 bg-gray-200 flex flex-col h-auto min-h-screen ' style={{ backgroundColor: "#f3f3f3" }}>
                 <div className='  px-10 py-3'>
                     <div className='flex flex-row w-full shadow-md gap-4 items-center justify-center text-white  bg-blue-500 p-3 rounded-xl'>

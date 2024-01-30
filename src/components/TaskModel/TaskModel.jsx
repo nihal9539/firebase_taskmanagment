@@ -42,7 +42,7 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
                 uid: uuid,
                 title: data.title,
                 description: data.description,
-                status: "pending",
+                status: "Pending",
                 date:date.toISOString()
             }
         ).then(() => {

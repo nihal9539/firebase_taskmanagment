@@ -22,8 +22,8 @@ export default function Login() {
             localStorage.setItem('user',user.uid)
             console.log(user);
             toast.success("Login success")
-            window.location.reload()
             navigate("/")
+            window.location.reload()
         })
         .catch((error) => {
             toast.error("Check email and password",{ position: "top-right" })
