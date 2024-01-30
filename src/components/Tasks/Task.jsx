@@ -7,16 +7,6 @@ import { db } from '../../config/firebase-config';
 
 const Task = ({ task }) => {
     const [comment, setComment] = useState('')
-    const windowWidth = window.innerWidth
-
-    if (task.comment) {
-        Object.values(task?.comment).map((task) => {
-            return (
-                console.log(task)
-            )
-    
-        })
-    }
 
     const [commentDrop, setCommentDrop] = useState(false)
     const user = localStorage.getItem('user')

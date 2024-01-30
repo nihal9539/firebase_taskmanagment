@@ -68,13 +68,7 @@ const UserTasks = () => {
                         </div>
                     </div>
                 ))}
-                <div className='
-             overflow-hidden
-             max-h-0
-             peer-checked:max-h-7
-             '>
-                    hiii
-                </div>
+         
 
             </div>
 

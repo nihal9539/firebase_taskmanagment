@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { db } from '../../config/firebase-config';
 import { onValue, ref } from 'firebase/database';
 import Task from '../../components/Tasks/Task';
-import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Box, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import DatePicker from 'react-date-picker';
 
 const Home = () => {
     const [taskData, setTaskData] = useState([])
@@ -22,7 +23,10 @@ const Home = () => {
     const handleChange = (e) => {
         setFilter(e.target.value);
     };
-    // console.log(taskData);
+    const [startdate, setStartDate] = useState(null);
+    const [enddate, setEndDate] = useState(null);
+
+ 
     return (
         <div className='' >
             <div className='p-4 sm:ml-64 bg-gray-200 flex flex-col h-auto min-h-screen ' style={{ backgroundColor: "#f3f3f3" }}>
@@ -34,7 +38,13 @@ const Home = () => {
                         <div className='w-3/12'>Status</div>
                     </div>
                 </div>
-                <div className='  px-10 py-3 self-end '>
+                <div className='  px-10 py-3 justify-between  flex flex-row gap-2'>
+                    <div className=' flex gap-3'>
+                        <DatePicker onChange={setStartDate} value={startdate} />
+                        <DatePicker onChange={setEndDate} value={enddate} />
+                        <Button>Select</Button>
+
+                    </div>
                     <Box >
                         <FormControl sx={{ minWidth: 220 }}>
                             <InputLabel id="demo-simple-select-label">Status</InputLabel>
@@ -57,29 +67,51 @@ const Home = () => {
                         taskData?.map((taskd) => {
                             return (
                                 <div >
-                                    {Object.values(taskd).map((task) => {
+                                    {/* {Object.values(taskd).map((task) => {
                                         return (
                                             <Task task={task} />
                                         )
 
-                                    })}
+                                    })} */}
+                                      {startdate && enddate ? (
+                                            Object.values(taskd).filter(task => new Date(task.startDate) >= startdate && new Date(task.date)  <= enddate).map((task) => {
+                                                return (
+                                                    <Task task={task} />
+                                                )
+
+                                            })) : (
+                                            Object.values(taskd).map((task) => {
+                                                return (
+                                                    <Task task={task} />
+                                                )
+
+                                            })
+                                        )}
 
                                 </div>
 
                             )
                         })
                     ) :
-                      
+
                         (
-                            taskData.map((taskd) => {     
+                            taskData.map((taskd) => {
                                 return (
                                     <div>
-                                       {Object.values(taskd).filter(task =>task.status ==filter).map((task) => {
-                                            return (
-                                                <Task task={task} />
-                                            )
+                                        {startdate && enddate ? (
+                                            Object.values(taskd).filter(task => task.status == filter && new Date(task.startDate) >= startdate && new Date(task.date)  <= enddate).map((task) => {
+                                                return (
+                                                    <Task task={task} />
+                                                )
 
-                                        })}
+                                            })) : (
+                                            Object.values(taskd).filter(task => task.status == filter).map((task) => {
+                                                return (
+                                                    <Task task={task} />
+                                                )
+
+                                            })
+                                        )}
 
                                     </div>
 
