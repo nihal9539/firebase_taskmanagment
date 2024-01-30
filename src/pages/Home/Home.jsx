@@ -23,20 +23,19 @@ const Home = () => {
 
     }
 
-    const fetcting = () => {
-        const cartRef = ref(db, 'task');
-        onValue(cartRef, (snapshot) => {
-            const data = snapshot.val();
-            console.log(data);
-            if (!!data) {
-                console.log(data);
-            } else {
-                console.log('Data not found');
-            }
-        });
-    }
 
-    // fetcting()
+
+    useEffect(()=>{
+        onValue(ref(db,'task/' + user),(snapdhot)=>{
+            setTaskData([])
+            const data = snapdhot.val();
+            if (data !==null) {
+                Object.values(data).map((task)=>{
+                    setTaskData((prevTask)=>[...prevTask, task]);
+                })
+            }
+        })
+    })
     return (
         <div className='' >
             <Sidebar />
@@ -50,7 +49,6 @@ const Home = () => {
                         <div className='w-2/12'>Action</div>
                     </div>
                 </div>
-                <span onClick={fetcting}>hiii</span>
                 {taskData.map((task) => (
 
                     <div className='  px-10 py-3 ' key={task._id}>
