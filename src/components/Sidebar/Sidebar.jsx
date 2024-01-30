@@ -17,6 +17,7 @@ const Sidebar = () => {
 
     const handlemodelopen = () => {
         setModelOpen(!modelOpen);
+        setSideBar(false)
     }
 
 
@@ -35,6 +36,14 @@ const Sidebar = () => {
     const handleside = () => {
         setSideBar(!sideBar)
     }
+    const handleMyTask = ()=>{
+        navigate('/user-task')
+        setSideBar(!sideBar)
+    }
+    const handleHome = ()=>{
+        navigate('/')
+        setSideBar(!sideBar)
+    }
     return (
         <div className='bg-gray-700 p-1'>
             <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden   focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -50,19 +59,19 @@ const Sidebar = () => {
                     </a>
                     <ul className="space-y-6 font-medium">
                         <li>
-                            <div onClick={() => navigate('/')} className="flex items-center p-2 text-gray-900 rounded-lg text-white hover:bg-gray-100 hover:bg-gray-700 group">
+                            <div onClick={handleHome} className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group">
                                 <IoHomeOutline size={30} />
                                 <span className="flex-1 ms-3 whitespace-nowrap">Home</span>
                             </div>
                         </li>
                         <li>
-                            <div onClick={() => navigate('/user-task')} className="flex items-center p-2 text-gray-900 rounded-lg text-white hover:bg-gray-100 hover:bg-gray-700 group">
+                            <div onClick={handleMyTask} className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group">
                                 <FaUserGroup size={30} />
                                 <span className="flex-1 ms-3 whitespace-nowrap">My Task</span>
                             </div>
                         </li>
                         <li>
-                            <span onClick={handlemodelopen} className="flex items-center p-2 text-gray-900 rounded-lg text-white hover:bg-gray-100 hover:bg-gray-700 group">
+                            <span onClick={handlemodelopen} className="flex items-center p-2  rounded-lg text-white  hover:bg-gray-700 group">
                                 <IoMdAdd size={30} />
                                 <span className="ms-3">Add Task</span>
                             </span>

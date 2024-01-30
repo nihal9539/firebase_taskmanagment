@@ -74,7 +74,7 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style} width={`${windowWidth > 500 ? "40%" : "100%"}`} height={`${windowWidth > 500 ? "75vh" : "100vh"}`}>
+                <Box sx={style} width={`${windowWidth > 600 ? "40%" : "100%"}`} height={`${windowWidth > 500 ? "75vh" : "100vh"}`}>
                     <form className='flex flex-col justify-between items-center  h-full overflow-scroll gap-2' onSubmit={handleSubmit}>
                         <div className=' w-full'>
                             <IoMdArrowBack className='' size={25} onClick={() => setModelOpen(false)}/>
@@ -88,7 +88,7 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
                                 <div className=" flex flex-row gap-3">
                                     <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Due Date</label>
 
-                                    <DatePicker onChange={setDate} required value={date} minDate={new Date()} />
+                                    <DatePicker  onChange={setDate} required value={date} minDate={new Date()} />
                                 </div>
 
                                 <div className=" flex flex-row gap-3">

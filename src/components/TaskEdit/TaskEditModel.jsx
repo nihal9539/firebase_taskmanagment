@@ -34,7 +34,7 @@ const TaskEdit = () => {
 
         ).then(() => {
             toast.success("Updated")
-            navigate("/")
+            navigate("/user-task")
 
             setData({
                 description: "",

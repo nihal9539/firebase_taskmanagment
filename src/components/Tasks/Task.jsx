@@ -4,11 +4,10 @@ import { BiCommentDetail } from 'react-icons/bi'
 import { FaRegUserCircle } from "react-icons/fa";
 import { VscSend } from "react-icons/vsc";
 import { db } from '../../config/firebase-config';
-import { toast } from 'react-toastify';
-import { uid } from 'uid';
 
 const Task = ({ task }) => {
     const [comment, setComment] = useState('')
+    const windowWidth = window.innerWidth
 
     if (task.comment) {
         Object.values(task?.comment).map((task) => {
@@ -30,6 +29,8 @@ const Task = ({ task }) => {
                 user: user,
                 comment: comment
             }
+        }).then(()=>{
+            setComment('')
         })
     }
     return (

@@ -1,0 +1,6 @@
+@media (min-width :500) {
+ .action{
+    display: flex;
+    flex-direction: column;
+ }   
+}
