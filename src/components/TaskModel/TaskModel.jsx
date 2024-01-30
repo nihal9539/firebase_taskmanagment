@@ -3,8 +3,9 @@ import Box from '@mui/material/Box';
 
 import Modal from '@mui/material/Modal';
 
-import {  ref, set } from "firebase/database";
+import { getDatabase, ref, set } from "firebase/database";
 import { db } from '../../config/firebase-config';
+import {uid} from 'uid';
 
 
 const style = {
@@ -22,13 +23,14 @@ const style = {
 
 
 export default function TaskModel({ modelOpen, setModelOpen }) {
-
+    
+    const uuid = uid()
 
 
     const [data, setData] = useState({
-    
+
         title: "",
-        description: ""
+        description: "",
     })
     // const handleSubmit = () => {
     //     //   createTask(user.user._id,data)
@@ -37,19 +39,24 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
 
     // }
 
+
     const user = localStorage.getItem('user')
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(data);
-        console.log(user);
-
-        set(ref(db, 'task/' ), {
-            title: data.title,
-            description: data.description,
-           
-        });
-        console.log("hoo");
+        set(ref(db, 'task/' + user +"/" +uuid ),
+            {
+                title: data.title,
+                description: data.description
+            }
+        );
+       setData({
+        title:""
+        ,description:""
+       })
+        setModelOpen(false)
+       
     }
+
     return (
         <div>
 

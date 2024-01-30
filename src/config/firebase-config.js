@@ -6,13 +6,14 @@ import { getDatabase } from "firebase/database";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD7qF8X747EGTueQ9LZ5-dCRl_f9PgETEs",
-  authDomain: "task-management-applicat-a08fa.firebaseapp.com",
-  projectId: "task-management-applicat-a08fa",
-  storageBucket: "task-management-applicat-a08fa.appspot.com",
-  messagingSenderId: "496181720225",
-  appId: "1:496181720225:web:2b20a69b30df01d82dece0",
-  measurementId: "G-SMBJCGLNWW"
+  apiKey: "AIzaSyAVuYImhgSrfNDDvz-nB64wD0sAnzWyt48",
+  authDomain: "task-17396.firebaseapp.com",
+  databaseURL: "https://task-17396-default-rtdb.firebaseio.com",
+  projectId: "task-17396",
+  storageBucket: "task-17396.appspot.com",
+  messagingSenderId: "972445921070",
+  appId: "1:972445921070:web:2414d368adeccfafe054bf",
+  measurementId: "G-M5EZ7R4097"
 };
 
 // Initialize Firebase
@@ -20,3 +21,4 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export const auth = getAuth(app)
 export const db = getDatabase();
+// export const datab = database()
