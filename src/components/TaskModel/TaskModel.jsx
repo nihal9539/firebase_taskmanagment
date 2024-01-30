@@ -3,12 +3,11 @@ import Box from '@mui/material/Box';
 
 import Modal from '@mui/material/Modal';
 
-import { getDatabase, ref, set } from "firebase/database";
+import { ref, set } from "firebase/database";
 import { db } from '../../config/firebase-config';
-import {uid} from 'uid';
+import { uid } from 'uid';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-
+import DatePicker from 'react-date-picker';
 
 const style = {
     position: 'absolute',
@@ -22,10 +21,13 @@ const style = {
     boxShadow: 24,
     p: 4,
 };
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 
 export default function TaskModel({ modelOpen, setModelOpen }) {
     const uuid = uid()
+    const [date, setDate] = useState(new Date());
     const [data, setData] = useState({
 
         title: "",
@@ -33,29 +35,33 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
     })
     const user = localStorage.getItem('user')
     function handleSubmit(e) {
+        console.log(date);
         e.preventDefault();
-        set(ref(db, 'task/' + user +"/" +uuid ),
+        set(ref(db, 'task/' + user + "/" + uuid),
             {
-                uid:uuid,
+                uid: uuid,
                 title: data.title,
                 description: data.description,
-                status:"pending"
+                status: "pending",
+                date:date.toISOString()
             }
-        ).then(()=>{
+        ).then(() => {
             toast.success("Task added")
-            nav
-        }).catch(()=>{
+            setDate(new Date())
+        }).catch(() => {
             toast.error("Something wrong")
-            
+
         })
-       setData({
-        title:""
-        ,description:""
-       })
+        setData({
+            title: ""
+            , description: ""
+        })
         setModelOpen(false)
 
-       
+
     }
+    console.log(date);
+
 
     return (
         <div>
@@ -75,15 +81,12 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
                                     <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Title</label>
                                     <input value={data.title} onChange={(e) => setData({ ...data, title: e.target.value })} type="text" className="block w-full p-2 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                                 </div>
-                                {/* <div className=" flex flex-row gap-3">
-                                    <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Task</label>
-                                    <input value={data.task} onChange={(e) => setData({ ...data, task: e.target.value })} type="text" className="block w-full p-2 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                                </div> */}
-                                {/* <div className=" flex flex-row gap-3">
-                                    <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Date</label>
-                                    <DatePicker onChange={onChange} value={value} />
+                                <div className=" flex flex-row gap-3">
+                                    <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Due Date</label>
 
-                                </div> */}
+                                    <DatePicker onChange={setDate} value={date} minDate={new Date()} />
+                                </div>
+
                                 <div className=" flex flex-row gap-3">
                                     <label for="large-input" className="block mb-2 text-sm font-medium   text-black">Description</label>
                                     <textarea value={data.description} onChange={(e) => setData({ ...data, description: e.target.value })} type="text" rows={5} className="block w-full p-2 border border-gray-300 rounded-lg bg-gray-50 sm:text-md focus:ring-blue-500 focus:border-blue-500  dark:placeholder-gray-400  dark:focus:ring-blue-500 dark:focus:border-blue-500" />
