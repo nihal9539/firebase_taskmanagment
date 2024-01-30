@@ -4,7 +4,6 @@ import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
-
 const firebaseConfig = {
   apiKey: "AIzaSyAVuYImhgSrfNDDvz-nB64wD0sAnzWyt48",
   authDomain: "task-17396.firebaseapp.com",

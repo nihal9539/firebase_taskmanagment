@@ -103,7 +103,7 @@ const TaskEdit = () => {
                                             onChange={handleChange}
                                         >
                                             <MenuItem value={'Pending'}>Pending</MenuItem>
-                                            <MenuItem value={'Success'}>Success</MenuItem>
+                                            <MenuItem value={'Completed'}>Completed</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Box>

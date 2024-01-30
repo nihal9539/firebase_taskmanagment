@@ -17,7 +17,7 @@ const UserTasks = () => {
 
 
     const handleEdit = (id) => {
-        navigate(`${id}`)
+        navigate(`/${id}`)
 
     }
 
@@ -48,18 +48,18 @@ const UserTasks = () => {
                         <div className='w-2/12 peer'>Action</div>
                     </div>
                 </div>
+               
                 {taskData.map((task) => (
 
                     <div className='  px-10 py-3 ' key={task._id}>
                         <div className='  flex flex-row w-full shadow-md gap-4 items-center justify-center  p-3 py-7 rounded-xl ' style={{ background: "rgba(255, 255, 255, 0.64)" }} >
                             {
     
-                            console.log( task.date.slice(0,10))
 }
-                            <div className='w-3/12'>{task.title}</div>
-                            <div className='w-4/12  break-words' ><span>{task.description}</span></div>
-                            <div className='w-3/12'>{task.date.slice(0,10)}</div>
-                            <div className='w-3/12'>{task?.status}</div>
+                            <div className='w-3/12 break-all'>{task.title}</div>
+                            <div className='w-4/12  break-all' ><span>{task.description}</span></div>
+                            <div className='w-3/12 break-all'>{task?.date.slice(0,10)}</div>
+                            <div className={`w-3/12 ${task?.status === 'Pending' ? 'text-red-500':"text-green-500"}`}>{task?.status}</div>
                             <div className='w-2/12 flex flex-row gap-3 justify-center items-center' ><MdOutlineModeEdit onClick={() => handleEdit(task.uid)} size={25} color='blue' /><RiDeleteBin6Line onClick={() => handleDelete(task.uid)} size={25} color='red' /></div>
 
                         </div>

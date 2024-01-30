@@ -16,19 +16,19 @@ function App() {
 
   return (
     <BrowserRouter>
-    <Routes>
-      <Route  element={user ? <Layout /> : <Navigate  replace to={'/login'} />} >
-        <Route path='/' element={<Home/>}/>
-        <Route path='/user-task' element={<UserTasks/>}/>
-      </Route>
-      <Route path='/:id' element={user ? <TaskEdit /> : <Navigate  replace to={'/login'} />} />
-      <Route path='/login' element={user ? <Navigate replace to={'/'} /> : <Login />} />
-      <Route path='/password-reset' element={user ? <Navigate replace to={'/'} /> : <PasswordReset />} />
-      <Route path='/signup' element={user ? <Navigate replace to={'/'} /> : <Signup />} />
-      <Route path='*' element={<h1>Not found</h1>}/>
-    </Routes>
-    <ToastContainer />
-  </BrowserRouter>
+      <Routes>
+        <Route element={user ? <Layout /> : <Navigate  to={'/login'} />} >
+          <Route path='/' element={<Home />} />
+          <Route path='/user-task' element={<UserTasks />} />
+        </Route>
+        <Route path='/:id' element={user ? <TaskEdit /> : <Navigate  to={'/login'} />} />
+        <Route path='/login' element={user ? <Navigate  to={'/'} /> : <Login />} />
+        <Route path='/password-reset' element={user ? <Navigate  to={'/'} /> : <PasswordReset />} />
+        <Route path='/signup' element={user ? <Navigate  to={'/'} /> : <Signup />} />
+        <Route path='*' element={<h1>Not found</h1>} />
+      </Routes>
+      <ToastContainer />
+    </BrowserRouter>
   )
 }
 

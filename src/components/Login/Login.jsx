@@ -20,10 +20,7 @@ export default function Login() {
         .then((userCredential) => {
             const user = userCredential.user;
             localStorage.setItem('user',user.uid)
-            console.log(user);
-            toast.success("Login success")
-            navigate("/")
-            window.location.reload()
+            window.location.assign('/')
         })
         .catch((error) => {
             toast.error("Check email and password",{ position: "top-right" })
@@ -54,6 +51,7 @@ export default function Login() {
                             email
                         </label>
                         <input
+                        required
                             type="text"
                             value={data.email}
                             onChange={(e) => setData({ ...data, email: e.target.value })}
@@ -69,6 +67,7 @@ export default function Login() {
                             Password
                         </label>
                         <input
+                        required
                             type="password"
                             value={data.password}
                             onChange={(e) => setData({ ...data, password: e.target.value })}
