@@ -6,6 +6,8 @@ import Modal from '@mui/material/Modal';
 import { getDatabase, ref, set } from "firebase/database";
 import { db } from '../../config/firebase-config';
 import {uid} from 'uid';
+import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 
 const style = {
@@ -23,23 +25,12 @@ const style = {
 
 
 export default function TaskModel({ modelOpen, setModelOpen }) {
-    
     const uuid = uid()
-
-
     const [data, setData] = useState({
 
         title: "",
         description: "",
     })
-    // const handleSubmit = () => {
-    //     //   createTask(user.user._id,data)
-
-
-
-    // }
-
-
     const user = localStorage.getItem('user')
     function handleSubmit(e) {
         e.preventDefault();
@@ -47,14 +38,22 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
             {
                 uid:uuid,
                 title: data.title,
-                description: data.description
+                description: data.description,
+                status:"pending"
             }
-        );
+        ).then(()=>{
+            toast.success("Task added")
+            nav
+        }).catch(()=>{
+            toast.error("Something wrong")
+            
+        })
        setData({
         title:""
         ,description:""
        })
         setModelOpen(false)
+
        
     }
 

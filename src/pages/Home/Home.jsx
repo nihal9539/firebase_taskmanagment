@@ -44,9 +44,8 @@ const Home = () => {
                     <div className='flex flex-row w-full shadow-md gap-4 items-center justify-center text-white  bg-blue-500 p-3 rounded-xl'>
                         <div className='w-3/12'>Title</div>
                         <div className='w-4/12'>Discription</div>
-                        {/* <div className='w-3/12'>Task</div> */}
-                        {/* <div className='w-3/12'>Date</div> */}
-                        <div className='w-2/12'>Action</div>
+                       
+                        <div className='w-2/12 peer'>Action</div>
                     </div>
                 </div>
                 {taskData.map((task) => (
@@ -63,7 +62,13 @@ const Home = () => {
                         </div>
                     </div>
                 ))}
-
+             <div className='
+             overflow-hidden
+             max-h-0
+             peer-checked:max-h-7
+             '>
+                hiii
+             </div>
 
             </div>
 

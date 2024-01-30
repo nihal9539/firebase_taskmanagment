@@ -2,6 +2,7 @@ import { onValue, ref, update } from 'firebase/database';
 import React, { useEffect, useState } from 'react';
 import {   useNavigate, useParams } from 'react-router-dom';
 import { db } from '../../config/firebase-config';
+import { toast } from 'react-toastify';
 
 
 
@@ -24,8 +25,19 @@ const TaskEdit = () => {
         }
         
         ).then(()=>{
+            toast.success("Updated")
             navigate("/")
+
+            setData({
+                description:"",
+                title:""
+            })
+            
         })
+        .catch((err)=>{
+            console.log(err);
+        })
+       
     
     }
 

@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase-config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
+import { toast } from 'react-toastify';
 
 
 export default function Login() {
@@ -17,18 +18,24 @@ export default function Login() {
         e.preventDefault();
         signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
-
             const user = userCredential.user;
             localStorage.setItem('user',user.uid)
             console.log(user);
+            toast.success("Login success")
+            window.location.reload()
             navigate("/")
         })
         .catch((error) => {
+            toast.error("Check email and password",{ position: "top-right" })
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log(errorCode, errorMessage)
         });
        
+    }
+
+    const handleForgotPassword = ()=>{
+        navigate('/password-reset')
     }
 
     return (
@@ -68,6 +75,9 @@ export default function Login() {
                             className="block w-full px-4 py-2 mt-2  bg-white border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
                         />
                     </div>
+                   <div className='font-bold flex  justify-end'>
+                   <span className='' onClick={handleForgotPassword}>Forgot Password?</span>
+                   </div>
 
                     <div className="mt-6">
                         <button type='submit' className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md ">
