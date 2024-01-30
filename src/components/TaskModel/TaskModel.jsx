@@ -45,6 +45,7 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
         e.preventDefault();
         set(ref(db, 'task/' + user +"/" +uuid ),
             {
+                uid:uuid,
                 title: data.title,
                 description: data.description
             }

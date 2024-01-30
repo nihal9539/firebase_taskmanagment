@@ -4,7 +4,7 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import { MdOutlineModeEdit } from "react-icons/md";
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../../config/firebase-config';
-import { onValue, ref } from 'firebase/database';
+import { onValue, ref, remove } from 'firebase/database';
 
 const Home = () => {
     const user = localStorage.getItem('user')
@@ -12,7 +12,7 @@ const Home = () => {
     const [taskData, setTaskData] = useState([])
 
     const handleDelete = (id) => {
-
+        remove(ref(db,'task/' + user +"/"+id))
 
     }
 
@@ -35,7 +35,8 @@ const Home = () => {
                 })
             }
         })
-    })
+    },[])
+    console.log(taskData);
     return (
         <div className='' >
             <Sidebar />
@@ -58,7 +59,7 @@ const Home = () => {
                             <div className='w-4/12  break-words' ><span>{task.description}</span></div>
                             {/* <div className='w-3/12'>{task.task}</div> */}
                             {/* <div className='w-3/12'>{task.createdAt.slice(0, 10)}</div> */}
-                            <div className='w-2/12 flex flex-row gap-3 justify-center items-center' ><MdOutlineModeEdit onClick={() => handleEdit(task._id)} size={25} color='blue' /><RiDeleteBin6Line onClick={() => handleDelete(task._id)} size={25} color='red' /></div>
+                            <div className='w-2/12 flex flex-row gap-3 justify-center items-center' ><MdOutlineModeEdit onClick={() => handleEdit(task.uid)} size={25} color='blue' /><RiDeleteBin6Line onClick={() => handleDelete(task.uid)} size={25} color='red' /></div>
 
                         </div>
                     </div>
