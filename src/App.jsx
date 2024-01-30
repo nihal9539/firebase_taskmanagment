@@ -7,9 +7,8 @@ import TaskEdit from './components/TaskEdit/TaskEditModel'
 import PasswordReset from './components/PasswordReset/PasswordReset'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-import AA from './components/AA/AA'
-import Layput from './pages/Layout/Layout'
 import Layout from './pages/Layout/Layout'
+import UserTasks from './components/UserTasks/UserTasks'
 
 function App() {
   const user = localStorage.getItem('user')
@@ -20,7 +19,7 @@ function App() {
     <Routes>
       <Route  element={user ? <Layout /> : <Navigate  replace to={'/login'} />} >
         <Route path='/' element={<Home/>}/>
-        <Route path='/user-task' element={<AA/>}/>
+        <Route path='/user-task' element={<UserTasks/>}/>
       </Route>
       <Route path='/:id' element={user ? <TaskEdit /> : <Navigate  replace to={'/login'} />} />
       <Route path='/login' element={user ? <Navigate replace to={'/'} /> : <Login />} />

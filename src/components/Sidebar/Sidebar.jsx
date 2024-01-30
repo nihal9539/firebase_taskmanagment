@@ -6,6 +6,9 @@ import TaskModel from '../TaskModel/TaskModel';
 import { Navigate, useNavigate } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase-config';
+import { IoHomeOutline } from "react-icons/io5";
+import { FaUserGroup } from "react-icons/fa6";
+
 import { toast } from 'react-toastify';
 const Sidebar = () => {
     const navigate = useNavigate()
@@ -44,22 +47,22 @@ const Sidebar = () => {
                     </a>
                     <ul className="space-y-6 font-medium">
                         <li>
+                            <div onClick={()=>navigate('/')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <IoHomeOutline size={30} />
+                                <span className="flex-1 ms-3 whitespace-nowrap">Home</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div onClick={()=>navigate('/user-task')}  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <FaUserGroup size={30} />
+                                <span className="flex-1 ms-3 whitespace-nowrap">My Task</span>
+                            </div>
+                        </li>
+                        <li>
                             <span onClick={handlemodelopen} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                 <IoMdAdd size={30} />
                                 <span className="ms-3">Add Task</span>
                             </span>
-                        </li>
-                        <li>
-                            <a href="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <MdInfoOutline size={30} />
-                                <span className="flex-1 ms-3 whitespace-nowrap">About</span>
-                            </a>
-                        </li>
-                        <li>
-                            <div onClick={()=>navigate('/AA')}  className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
-                                <MdInfoOutline size={30} />
-                                <span className="flex-1 ms-3 whitespace-nowrap">Profile</span>
-                            </div>
                         </li>
                         <li>
                             <div onClick={handleLogout} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
