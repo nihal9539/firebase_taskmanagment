@@ -21,26 +21,33 @@ const Sidebar = () => {
     }
 
 
+    //Function for log out it will clear local storage too
+
     const handleLogout = () => {
         signOut(auth).then(() => {
             localStorage.clear()
             console.log("Signed out successfully")
-            navigate("/login");
+            navigate("/");
             window.location.reload()
         }).catch((error) => {
             console.log(error);
 
         });
     }
-    const handleside = () => {
-        setSideBar(!sideBar)
+    // delete task with their id 
+    function handleside() {
+        setSideBar(!sideBar);
     }
+
+    // for see own task
     const handleMyTask = ()=>{
         navigate('/user-task')
         setSideBar(!sideBar)
     }
+
+    // function foe navigate to home
     const handleHome = ()=>{
-        navigate('/')
+        navigate('/home')
         setSideBar(!sideBar)
     }
     return (
@@ -93,7 +100,7 @@ const Sidebar = () => {
                         </a>
                         <ul className="space-y-6 font-medium">
                             <li>
-                                <div onClick={() => navigate('/')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <div onClick={() => navigate('/home')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                     <IoHomeOutline size={30} />
                                     <span className="flex-1 ms-3 whitespace-nowrap">Home</span>
                                 </div>

@@ -12,6 +12,8 @@ const Task = ({ task }) => {
     const user = localStorage.getItem('user')
 
     const uniqueId = Date.now()
+
+    // fetching tasks
     const handlesendComment = (userId, id) => {
         update(ref(db, 'task/' + userId + "/" + id + '/comment'), {
             [uniqueId]:

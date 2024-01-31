@@ -37,6 +37,11 @@ export default function TaskModel({ modelOpen, setModelOpen }) {
         description: "",
     })
     const user = localStorage.getItem('user')
+
+
+
+    // funtion for creating task
+    
     function handleSubmit(e) {
         console.log(date);
         e.preventDefault();

@@ -4,7 +4,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { db } from '../../config/firebase-config';
 import { toast } from 'react-toastify';
 import DatePicker from 'react-date-picker';
-import Drop from '../Drop/Drop';
 import { Box, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 
@@ -20,6 +19,9 @@ const TaskEdit = () => {
         title: "",
         status:""
     })
+
+
+    // funtion for updating existing task
 
     const handleSubmit = async (e) => {
         e.preventDefault();

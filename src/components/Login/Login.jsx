@@ -13,13 +13,14 @@ export default function Login() {
         password: "",
     })
 
+    // Login
     const onLogin = (e) => {
         e.preventDefault();
         signInWithEmailAndPassword(auth, data.email, data.password)
         .then((userCredential) => {
             const user = userCredential.user;
             localStorage.setItem('user',user.uid)
-            window.location.assign('/')
+            window.location.assign('/home')
         })
         .catch((error) => {
             toast.error("Check email and password",{ position: "top-right" })
@@ -29,7 +30,9 @@ export default function Login() {
         });
        
     }
-
+  
+    // Forgot password
+    
     const handleForgotPassword = ()=>{
         navigate('/password-reset')
     }

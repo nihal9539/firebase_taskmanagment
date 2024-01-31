@@ -9,11 +9,14 @@ export default function PasswordReset() {
     const navigate = useNavigate()
     const [email, setEmail] = useState('')
 
+
+    // Function for forgot password
+
     const onSubmit = (e) => {
         e.preventDefault();
         sendPasswordResetEmail(auth,email).then((data)=>{
             console.log("email sent")
-            navigate('/login')
+            navigate('/')
         }).then((err)=>{
             console.log(err.message);
         })
