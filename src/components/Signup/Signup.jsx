@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import React, { useState } from 'react';
 import { Link, NavLink, Navigate, useNavigate } from 'react-router-dom';
 import { auth } from '../../config/firebase-config';
+import { toast } from 'react-toastify';
 
 
 export default function Signup() {
@@ -26,14 +27,20 @@ export default function Signup() {
               // Signed in
               const user = userCredential.user;
               console.log(user.uid);
-              localStorage.setItem('user',user.uid)
+         
               navigate("/")
               // ...
           })
           .catch((error) => {
               const errorCode = error.code;
               const errorMessage = error.message;
-              console.log(errorCode, errorMessage);
+              if (errorCode === "auth/weak-password") {
+                
+                  toast.error("Password must be at least 6 charaters ")
+                }else{
+                  toast.error("Email already exist ")
+
+              }
               // ..
           });
    
