@@ -80,7 +80,7 @@ export default function Signup() {
 
                     <div className="mt-6">
                         <button type='submit' className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-700 rounded-md ">
-                            Login
+                            Sign Up
                         </button>
                     </div>
                 </form>

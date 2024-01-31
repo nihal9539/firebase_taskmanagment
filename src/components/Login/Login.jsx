@@ -8,7 +8,6 @@ import { toast } from 'react-toastify';
 
 export default function Login() {
     const navigate = useNavigate()
-    const [error, setError] = ('')
     const [data, setData] = useState({
         email: "",
         password: "",
@@ -42,7 +41,6 @@ export default function Login() {
                     Sign in
                 </h1>
                 <form className="mt-6" onSubmit={onLogin}>
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
                     <div className="mb-2">
                         <label
 

@@ -4,6 +4,7 @@ import { onValue, ref } from 'firebase/database';
 import Task from '../../components/Tasks/Task';
 import { Box, Button, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import DatePicker from 'react-date-picker';
+import "./Home.css"
 
 const Home = () => {
     const [taskData, setTaskData] = useState([])
@@ -26,7 +27,7 @@ const Home = () => {
     const [startdate, setStartDate] = useState(null);
     const [enddate, setEndDate] = useState(null);
 
- 
+
     return (
         <div className='' >
             <div className='p-4 sm:ml-64 bg-gray-200 flex flex-col h-auto min-h-screen ' style={{ backgroundColor: "#f3f3f3" }}>
@@ -38,55 +39,51 @@ const Home = () => {
                         <div className='w-3/12'>Status</div>
                     </div>
                 </div>
-                <div className='  px-10 py-3 justify-between  flex flex-row gap-2'>
-                    <div className=' flex gap-3'>
-                        <DatePicker onChange={setStartDate} value={startdate} />
-                        <DatePicker onChange={setEndDate} value={enddate} />
-                        <Button>Select</Button>
+                <div className='  px-10 py-3 justify-between items-center filter  gap-2'>
+                    <span>Filters:</span>
+                    <div className=' flex gap-3 p-2'>
+                        <DatePicker className={` p-2 border-none outline-none`} onChange={setStartDate} value={startdate} />
+                        <DatePicker className={` p-2 border-none outline-none`} onChange={setEndDate} value={enddate} />
 
                     </div>
-                    <Box >
-                        <FormControl sx={{ minWidth: 220 }}>
-                            <InputLabel id="demo-simple-select-label">Status</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={filter}
-                                label="Status"
-                                onChange={handleChange}
-                            >
-                                <MenuItem value={'all'}>All</MenuItem>
-                                <MenuItem value={'Completed'}>Completed</MenuItem>
-                                <MenuItem value={'Pending'}>Pending</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </Box>
+                    <div className=' self-center'>
+                        <Box >
+                            <FormControl sx={{ minWidth: 220 }}>
+                                <InputLabel id="demo-simple-select-label">Status</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={filter}
+                                    label="Status"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={'all'}>All</MenuItem>
+                                    <MenuItem value={'Completed'}>Completed</MenuItem>
+                                    <MenuItem value={'Pending'}>Pending</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
+                    </div>
                 </div>
                 {
                     filter == "all" ? (
                         taskData?.map((taskd) => {
                             return (
                                 <div >
-                                    {/* {Object.values(taskd).map((task) => {
-                                        return (
-                                            <Task task={task} />
-                                        )
+                                    {startdate && enddate ? (
+                                        Object.values(taskd).filter(task => new Date(task.startDate) >= startdate && new Date(task.date) <= enddate).map((task) => {
+                                            return (
+                                                <Task task={task} />
+                                            )
 
-                                    })} */}
-                                      {startdate && enddate ? (
-                                            Object.values(taskd).filter(task => new Date(task.startDate) >= startdate && new Date(task.date)  <= enddate).map((task) => {
-                                                return (
-                                                    <Task task={task} />
-                                                )
+                                        })) : (
+                                        Object.values(taskd).map((task) => {
+                                            return (
+                                                <Task task={task} />
+                                            )
 
-                                            })) : (
-                                            Object.values(taskd).map((task) => {
-                                                return (
-                                                    <Task task={task} />
-                                                )
-
-                                            })
-                                        )}
+                                        })
+                                    )}
 
                                 </div>
 
@@ -99,7 +96,7 @@ const Home = () => {
                                 return (
                                     <div>
                                         {startdate && enddate ? (
-                                            Object.values(taskd).filter(task => task.status == filter && new Date(task.startDate) >= startdate && new Date(task.date)  <= enddate).map((task) => {
+                                            Object.values(taskd).filter(task => task.status == filter && new Date(task.startDate) >= startdate && new Date(task.date) <= enddate).map((task) => {
                                                 return (
                                                     <Task task={task} />
                                                 )

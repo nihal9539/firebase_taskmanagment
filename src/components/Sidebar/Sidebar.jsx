@@ -9,7 +9,7 @@ import { auth } from '../../config/firebase-config';
 import { IoHomeOutline } from "react-icons/io5";
 import { FaUserGroup } from "react-icons/fa6";
 
-import { toast } from 'react-toastify';
+
 const Sidebar = () => {
     const navigate = useNavigate()
     const [modelOpen, setModelOpen] = useState(false)
@@ -25,11 +25,10 @@ const Sidebar = () => {
         signOut(auth).then(() => {
             localStorage.clear()
             console.log("Signed out successfully")
-            toast.success("Logout", { position: "top-right" })
             navigate("/login");
             window.location.reload()
         }).catch((error) => {
-            console.log("error");
+            console.log(error);
 
         });
     }
