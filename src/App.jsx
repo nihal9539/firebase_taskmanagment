@@ -17,14 +17,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/"   element={user ? <Layout /> : <Navigate to={'/'} />} >
-          <Route path='home' element={<Home />} />
+        <Route  element={user ? <Layout /> : <Navigate to={'/login'} />} >
+          <Route path='/' element={<Home />} />
           <Route path='/user-task' element={<UserTasks />} />
-          <Route path='/:id' element={user ? <TaskEdit /> : <Navigate to={'/'} />} />
         </Route>
-        <Route path='/' element={user ? <Navigate to={'/home'} /> : <Login />} />
-        <Route path='/password-reset' element={user ? <Navigate to={'/'} /> : <PasswordReset />} />
-        <Route path='/signup' element={user ? <Navigate to={'/'} /> : <Signup />} />
+          <Route path='/:id' element={user ? <TaskEdit /> : <Navigate to={'/login'} />} />
+        <Route path='/login' element={user ? <Navigate to={'/login'} /> : <Login />} />
+        <Route path='/password-reset' element={user ? <Navigate to={'/login'} /> : <PasswordReset />} />
+        <Route path='/signup' element={user ? <Navigate to={'/login'} /> : <Signup />} />
         <Route path='*' element={<h1>Not found</h1>} />
       </Routes>
       <ToastContainer />

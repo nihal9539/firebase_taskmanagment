@@ -96,7 +96,7 @@ export default function Signup() {
 
 
 
-                <div onClick={() => navigate('/')} className="mt-8 text-xs font-light text-center text-gray-700">
+                <div onClick={() => navigate('/login')} className="mt-8 text-xs font-light text-center text-gray-700">
                     {" "}
                     Already have an account?{" "}
                     <a

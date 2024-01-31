@@ -20,7 +20,7 @@ export default function Login() {
         .then((userCredential) => {
             const user = userCredential.user;
             localStorage.setItem('user',user.uid)
-            window.location.assign('/home')
+            window.location.assign('/')
         })
         .catch((error) => {
             toast.error("Check email and password",{ position: "top-right" })

@@ -27,7 +27,7 @@ const Sidebar = () => {
         signOut(auth).then(() => {
             localStorage.clear()
             console.log("Signed out successfully")
-            navigate("/");
+            navigate("/login");
             window.location.reload()
         }).catch((error) => {
             console.log(error);
@@ -47,7 +47,7 @@ const Sidebar = () => {
 
     // function foe navigate to home
     const handleHome = ()=>{
-        navigate('/home')
+        navigate('/')
         setSideBar(!sideBar)
     }
     return (
@@ -100,7 +100,7 @@ const Sidebar = () => {
                         </a>
                         <ul className="space-y-6 font-medium">
                             <li>
-                                <div onClick={() => navigate('/home')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+                                <div onClick={() => navigate('/')} className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                                     <IoHomeOutline size={30} />
                                     <span className="flex-1 ms-3 whitespace-nowrap">Home</span>
                                 </div>
