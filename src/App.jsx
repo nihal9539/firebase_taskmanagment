@@ -17,8 +17,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route   element={user ? <Layout /> : <Navigate to={'/'} />} >
-          <Route path='/home' element={<Home />} />
+        <Route path="/"   element={user ? <Layout /> : <Navigate to={'/'} />} >
+          <Route path='home' element={<Home />} />
           <Route path='/user-task' element={<UserTasks />} />
           <Route path='/:id' element={user ? <TaskEdit /> : <Navigate to={'/'} />} />
         </Route>
